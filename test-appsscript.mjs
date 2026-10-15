@@ -1,0 +1,11 @@
+import vm from 'node:vm';import fs from 'node:fs';import assert from 'node:assert/strict';
+const headers=['隊號','隊伍名稱','學校','項目一第1次分數','項目一第1次時間','項目一第1次狀態','項目一第2次分數','項目一第2次時間','項目一第2次狀態','項目二第1次分數','項目二第1次時間','項目二第1次狀態','項目二第2次分數','項目二第2次時間','項目二第2次狀態'];
+const rows=[['1-01','星河隊','學校','95','1:23.45','完成','','','未出賽','80','2:00.00','完成','','','未出賽']];
+const sheet={getLastRow:()=>2,getRange:(r,c,n,w)=>({getDisplayValues:()=>r===1?[headers]:rows})};
+const ctx={SpreadsheetApp:{openById:()=>({getSheetByName:()=>sheet})},PropertiesService:{getScriptProperties:()=>({getProperty:()=> 'testsheet'})},ContentService:{MimeType:{JSON:'json',JAVASCRIPT:'js'},createTextOutput:text=>({text,setMimeType(type){return {text,type};}})}};
+vm.createContext(ctx);vm.runInContext(fs.readFileSync('Code.gs','utf8'),ctx);
+let r=ctx.doGet({parameter:{}});const payload=JSON.parse(r.text);assert.equal(payload.sessions.length,3);assert.equal(payload.sessions[0].teams[0].one[0].time,'1:23.45');assert.equal(payload.sessions[0].teams[0].two[0].score,'80');
+r=ctx.doGet({parameter:{callback:'race_cb_123_1'}});assert.equal(r.type,'js');assert.match(r.text,/^race_cb_123_1\(/);
+r=ctx.doGet({parameter:{callback:'alert(1)'}});assert.equal(r.type,'json');assert.equal(JSON.parse(r.text).ok,false);
+ctx.SpreadsheetApp.openById=()=>{throw Error('Access denied')};assert.equal(JSON.parse(ctx.doGet({parameter:{}}).text).ok,false);
+console.log('PASS: Apps Script readonly JSON/JSONP, 3-session mapping, callback validation, missing setup. Live Google authorization remains untested.');

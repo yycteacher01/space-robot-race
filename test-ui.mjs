@@ -1,0 +1,8 @@
+import assert from 'node:assert/strict';
+const nodes=new Map();const make=id=>({id,textContent:'',innerHTML:'',value:'',className:'',disabled:false,dataset:{},classList:{toggle(){}},setAttribute(){},showModal(){},close(){},click(){},appendChild(){},remove(){}});
+globalThis.document={getElementById:id=>{if(!nodes.has(id))nodes.set(id,make(id));return nodes.get(id)},querySelectorAll:s=>s==='[data-session]'?[1,2,3].map(n=>({...make(),dataset:{session:String(n)}})):["one","two","total"].map(e=>({...make(),dataset:{event:e}})),body:{classList:{toggle(){}}},head:{appendChild(){}},createElement:()=>make(),documentElement:{requestFullscreen:async()=>{}}};
+globalThis.location={href:'https://example.test/',search:''};globalThis.history={replaceState(){}};globalThis.localStorage={getItem(){return null},setItem(){},removeItem(){}};globalThis.window=globalThis;globalThis.setInterval=()=>0;
+await import('./app.js?test=score');
+assert.match(nodes.get('statusText').textContent,/等待/);assert.doesNotMatch(nodes.get('thead').innerHTML,/學校/);assert.match(nodes.get('rankingRule').textContent,/分數高優先/);
+nodes.get('demo').onclick();assert.match(nodes.get('tbody').innerHTML,/100/);assert.match(nodes.get('tbody').innerHTML,/分/);assert.doesNotMatch(nodes.get('tbody').innerHTML,/示範學校/);assert.doesNotMatch(nodes.get('leaders').innerHTML,/LEADING|MISSION/);assert.match(nodes.get('footerMode').textContent,/示範資料/);assert.equal((nodes.get('thead').innerHTML.match(/<th /g)||[]).length,6);
+console.log('PASS: UI initialization, pending/demo states, score columns, Chinese competition labels and no school column.');
