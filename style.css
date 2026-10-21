@@ -8,4 +8,4 @@
 .try-score{font:500 17px var(--mono);display:block;margin-bottom:5px;color:#dce5dc}.try-score small,.best-score small{font:11px var(--sans);color:var(--muted)}.best-score{font:600 23px var(--mono);display:block;color:var(--lime);margin-bottom:5px}.best-time{font-size:15px;color:#b6c8d1}.leader-time{display:block;font-size:13px;color:#a9c0c9;margin-top:5px}.score-unit{font:11px var(--sans)}.stats div:nth-child(3) strong{font-size:29px}.presentation .best-score{font-size:28px}.presentation .best-time{font-size:17px}@media(max-width:720px){.leader .time{text-align:right}.leader-time{font-size:11px}.try-score{font-size:15px}.best-score{font-size:20px}}
 
 
-.competition-nav{display:flex;gap:8px;margin:0 0 24px;flex-wrap:wrap}.competition-nav a{padding:11px 20px;border:1px solid #41606c;border-radius:10px;color:inherit;text-decoration:none}.competition-nav a[aria-current="page"]{background:#bdf478;color:#10222a;border-color:#bdf478;font-weight:700}.competition-nav a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.session-tabs{flex-wrap:wrap}.session-tabs button{flex-shrink:0}

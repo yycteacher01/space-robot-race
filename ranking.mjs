@@ -31,6 +31,7 @@ export function rankTeams(teams,event){
  let last='',rank=0;rows.forEach((r,i)=>{if(r.score===null)return;const key=`${r.score}|${r.time}`;if(last!==key)rank=i+1;r.rank=rank;last=key;});return rows;
 }
 export function validatePayload(p){
- if(!p||p.ok!==true||!Array.isArray(p.sessions)||p.sessions.length!==3)throw Error(p?.error||'資料格式不符，請使用本頁提供的 Google Apps Script。');
- const seen=new Set();for(const s of p.sessions){if(![1,2,3].includes(s.id)||seen.has(s.id)||!Array.isArray(s.teams))throw Error('場次資料不完整。');seen.add(s.id);if(s.teams.length>90)throw Error('場次資料超出90隊。');const ids=new Set();for(const t of s.teams){const id=String(t.id||'').trim();if(typeof t.name!=='string'||!id||ids.has(id))throw Error('隊號空白或重複，請檢查 Google Sheet。');ids.add(id);for(const e of ['one','two'])if(!Array.isArray(t[e])||t[e].length!==2)throw Error('每隊必須有兩項各兩次機會。');}}return p;
+ if(!p||p.ok!==true||!Array.isArray(p.sessions)||![3,4].includes(p.sessions.length))throw Error(p?.error||'資料格式不符，請使用本頁提供的 Google Apps Script。');
+ const seen=new Set();for(const s of p.sessions){if(![1,2,3,4].includes(s.id)||seen.has(s.id)||!Array.isArray(s.teams))throw Error('場次資料不完整。');seen.add(s.id);if(s.teams.length>90)throw Error('場次資料超出90隊。');const ids=new Set();for(const t of s.teams){const id=String(t.id||'').trim();if(typeof t.name!=='string'||!id||ids.has(id))throw Error('隊號空白或重複，請檢查 Google Sheet。');ids.add(id);for(const e of ['one','two'])if(!Array.isArray(t[e])||t[e].length!==2)throw Error('每隊必須有兩項各兩次機會。');}}if(![1,2,3].every(id=>seen.has(id)))throw Error('缺少原有場次。');return p;
 }
+
