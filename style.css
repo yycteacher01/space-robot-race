@@ -104,3 +104,19 @@ footer{font-size:12px}
  .best-score{font-size:25px}.best-time{font-size:17px}.best-tag,.pill{font-size:12px}
  .board-foot,.bottom-note,.bottom-note button{font-size:12px}
 }
+
+/* Show all teams with compact spacing while retaining readable type. */
+.table-wrap{max-height:none;overflow-x:auto}
+td,.presentation td{padding:8px 16px}
+th{padding:10px 16px}
+.try-detail{margin-top:2px;line-height:1.35}.team-id{margin-top:2px}
+.try-score,.best-score{margin-bottom:2px}
+header{height:78px}.controlbar{margin-top:12px}
+.session-tabs button{padding-top:9px;padding-bottom:10px}
+.eventbar{margin:12px 0}.message{padding:8px 14px;margin-bottom:12px}
+.stats>div{padding:10px 20px}.stats strong{margin-top:3px;font-size:29px}
+.board-head{padding:14px 20px}
+main{display:flex;flex-direction:column}
+.leader-section{order:1;margin:18px 0}.bottom-note{order:2}
+.board{margin-top:14px}
+@media(max-width:720px){header{height:auto;min-height:78px;padding:12px 0;gap:12px;flex-wrap:wrap}.stats>div{padding:10px 14px}td{padding:8px 12px}.board-head{padding:12px 15px}}
