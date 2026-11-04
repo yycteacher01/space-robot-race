@@ -59,3 +59,48 @@ summary{color:#243c50}
 .primary{background:#247246;color:#fff}
 .dot.error{background:#c64232}
 .dot.demo{background:#aa672b}
+
+/* Larger, readable competition display */
+body{font-size:16px}
+.brand{font-size:17px}.brand-sub{font-size:13px}
+.outline,.sheet-link{font-size:14px}.icon-btn{font-size:20px}
+.intro p{font-size:16px}
+.disclaimer strong{font-size:17px}.disclaimer div>span{font-size:15px}
+.session-tabs button{font-size:21px}.session-tabs button span{font-size:12px}
+.connection strong{font-size:15px}.connection small{font-size:13px}
+.event-tabs button,.event-tabs button span{font-size:16px}
+.limit{font-size:14px}.message{font-size:15px}
+.stats small{font-size:14px}.stats strong{font-size:36px}
+.stats div>span{font-size:12px}
+.section-label{font-size:14px}.section-label>span:last-child{font-size:13px}
+.leader h3{font-size:19px}.leader small,.leader p{font-size:13px}
+.leader .time{font-size:27px}.leader-time{font-size:16px}
+.board-head h2{font-size:21px}.board-head>div>span{font-size:14px}
+.table-actions .outline,.search input{font-size:14px}
+.search input{width:220px}
+th{font-size:14px;padding:16px 20px}
+td{font-size:16px;padding:20px}
+.team-name{font-size:18px}.team-id{font-size:13px}
+.try-score{font-size:22px}.try-time{font-size:17px}.try-detail{font-size:13px;line-height:1.7}
+.best-score{font-size:28px}.best-time{font-size:19px}.best-tag,.wait,.pill{font-size:13px}
+.try-score small,.best-score small{font-size:14px}
+.board-foot,.bottom-note,.bottom-note button{font-size:13px}
+footer{font-size:12px}
+.setup-steps p,details p,.modal-intro{font-size:15px}
+.setup-steps strong{font-size:17px}.text-link,form label,input[type=url],.primary,summary{font-size:15px}
+.small{font-size:13px}
+@media(max-width:720px){
+ body{font-size:15px}.brand{font-size:13px}.brand-sub{font-size:11px}
+ .intro p{font-size:13px}.disclaimer strong{font-size:15px}.disclaimer div>span{font-size:13px}
+ .session-tabs button{font-size:18px}.session-tabs button span{font-size:11px}
+ .event-tabs button,.event-tabs button span{font-size:13px}
+ .connection small{font-size:12px}.message{font-size:14px}
+ .stats small{font-size:13px}.stats div>span{font-size:11px}
+ .leader h3{font-size:18px}.leader p{font-size:12px}
+ .board-head h2{font-size:18px}.search input{width:100%;font-size:14px}
+ th{font-size:13px}td{font-size:15px}
+ .team-name{font-size:17px}.team-id{font-size:12px}
+ .try-score{font-size:20px}.try-time{font-size:16px}.try-detail{font-size:12px}
+ .best-score{font-size:25px}.best-time{font-size:17px}.best-tag,.pill{font-size:12px}
+ .board-foot,.bottom-note,.bottom-note button{font-size:12px}
+}
