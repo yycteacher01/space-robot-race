@@ -11,7 +11,7 @@ function doGet(e){
   const id=COMPETITION_SPREADSHEET_ID;const ss=SpreadsheetApp.openById(id);
   const sessions=[1,2,3,4].map(n=>{const label=n===4?'校內':'第'+n+'場';const sh=ss.getSheetByName(label);if(n===4&&!sh)return {id:4,name:label,teams:[]};if(!sh)throw new Error('缺少第'+n+'場工作表。');const header=sh.getRange(1,1,1,25).getDisplayValues()[0];const at=name=>{const i=header.indexOf(name);if(i<0)throw new Error(label+'缺少欄位：'+name);return i;};const get=(r,name)=>r[at(name)];const entry=(r,event,no)=>{const key='項目'+event+'第'+no+'次';return {score:get(r,key+'自動分數'),time:get(r,key+'時間'),status:get(r,key+'狀態'),rescues:get(r,key+'救援'),...(event==='二'?{treasures:get(r,key+'寶藏')}: {})};};
    const values=sh.getLastRow()>1?sh.getRange(2,1,Math.min(sh.getLastRow()-1,200),25).getDisplayValues():[];
-   return {id:n,name:label,teams:values.filter(r=>String(get(r,'隊伍名稱')||'').trim()).map(r=>({id:get(r,'隊號'),name:get(r,'隊伍名稱'),one:[entry(r,'一',1),entry(r,'一',2)],two:[entry(r,'二',1),entry(r,'二',2)]}))};});
+   return {id:n,name:label,teams:values.filter(r=>String(get(r,'隊伍名稱')||'').trim()).map(r=>({id:get(r,'隊號'),name:get(r,'隊伍名稱'),school:get(r,'學校名稱'),one:[entry(r,'一',1),entry(r,'一',2)],two:[entry(r,'二',1),entry(r,'二',2)]}))};});
   data={ok:true,schemaVersion:2,generatedAt:new Date().toISOString(),sessions};
  }catch(err){data={ok:false,error:String(err.message||err)};}
  const cb=String(e&&e.parameter&&e.parameter.callback||'');const json=JSON.stringify(data).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
